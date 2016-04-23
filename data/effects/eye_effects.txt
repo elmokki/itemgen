@@ -1,0 +1,76 @@
+--- HERE IS A LIST OF COMMANDS
+--- To be extended.
+-- #name "<stuff>". Not required, should be there for debug purposes.
+-- #descr "<stuff>". Description of what the ability does. 
+-- #type "<stuff>". Sets a category of effects. Only one thing per category is given to a single item
+-- #multitype. ...unless this one is there as well.
+-- #command "<stuff>". This command is added to the item if possible.
+-- #primarycommand "<stuff>". This effect cannot be applied if the item already has given command.
+-- #element <element> <amount>. Skews the item element to given element by given amount
+--                       For example: #element fire 1 skews the item slightly to fire.
+-- #power <number>. How powerful is this? Level 0/2/4/8 items have max power of ON AVERAGE
+--                  1/3/6/9/12.	
+
+
+#new
+#name "precision+8"
+#descr "%item% gives it's wielder a substantial boost to precision."
+#type "eye"
+#multitype
+#command "#prec +8"
+#command "#loseeye"
+#element air 2
+#element nature 1
+#level_cost 2 0.75
+#tag precision
+#end
+
+#new
+#name "pen+1"
+#command "#pen +1"
+#command "#loseeye"
+#descr "%item% increases its user's ability of bypassing enemy magic resistance"
+#type "eye"
+#multitype
+#element astral 2
+#tag penetration
+#level_cost 4 0.75
+#end
+
+
+#new
+#name "pen+3"
+#command "#pen +3"
+#command "#loseeye"
+#descr "%item% greatly increases its user's ability of bypassing enemy magic resistance"
+#type "eye"
+#multitype
+#element astral 8
+#tag penetration
+#level_cost 8 5
+#end
+
+
+#new
+#name "dousing"
+#command "#douse"
+#command "#loseeye"
+#level_cost 4 2
+#descr "%item% lets it's user spot potential subjects of blood sacrifice from a crowd."
+#type "eye"
+#multitype
+#element blood 4
+#tag blood
+#tag dousing
+#end
+
+#new
+#name "slave"
+#command "#communionslave"
+#command "#loseeye"
+#level_cost 4 1
+#descr "%item% enslaves it's carrier to be a slave in magical communions."
+#element astral 4
+#element blood 4
+#tag communionslave
+#end

@@ -1,0 +1,77 @@
+#new
+#name "blade 1"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade1.png"
+#end
+
+#new
+#basechance 0.5
+#name "blade 1 recolorable"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade1.png"
+#recolormask self
+#coolness 4
+#end
+
+#new
+#name "blade 2"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade2.png"
+#coolness 4
+#end
+
+
+#new
+#name "blade 2 recolorable"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade2.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_blade2_recolor_dots.png"
+#coolness 6
+#end
+
+#new
+#name "blade 2 gold"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade2_gold.png"
+#coolness 6
+#end
+
+#new
+#name "blade 3"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade3.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_blade3_recolor.png"
+#coolness 6
+#end
+
+#new
+#name "blade 4"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade4.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_blade4_recolormask.png"
+#coolness 6
+#basechance 0.25
+#chanceinc magic nature *5
+#end
+
+#new
+#name "blade 5"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade5.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_blade5_recolormask.png"
+#coolness 6
+#basechance 0.1
+#chanceinc tag aoe *50
+#chanceinc tag elemental *50
+#end
+
+#new
+#basechance 0.25
+#name "blade 6 recoloring"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade6.png"
+#recolormask self
+#coolness 6
+#chanceinc magic blood *16
+#chanceinc magic death *2
+#end
+
+
+#new
+#name "blade 6"
+#sprite "./graphics/weapon/sword_1h/sword_1h_blade6.png"
+#coolness 4
+#chanceinc magic blood *8
+#chanceinc magic death *2
+#end

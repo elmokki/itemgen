@@ -1,0 +1,46 @@
+#new
+#name "scale"
+#sprite "./graphics/armor/chest/scale.png"
+#end
+
+
+#new
+#name "scale recolorable"
+#sprite "./graphics/armor/chest/scale.png"
+#recolormask "./graphics/armor/chest/scale_recolormask.png"
+#coolness 4
+#end
+
+#new
+#name "scale recolorable dark"
+#sprite "./graphics/armor/chest/scale.png"
+#recolormask "./graphics/armor/chest/scale_recolormask_dark.png"
+#coolness 4
+#end
+
+
+#new
+#name "scale gold"
+#sprite "./graphics/armor/chest/scale_gold.png"
+#coolness 4
+#end
+
+#new
+#name "scale goldscales"
+#sprite "./graphics/armor/chest/scale_goldscales.png"
+#coolness 2
+#end
+
+#new
+#name "scale goldscales_recolorable"
+#sprite "./graphics/armor/chest/scale_goldscales.png"
+#recolormask "./graphics/armor/chest/scale_goldscales_recolormask.png"
+#coolness 4
+#end
+
+#new
+#name "scale goldscales_recolorable dark"
+#sprite "./graphics/armor/chest/scale_goldscales.png"
+#recolormask "./graphics/armor/chest/scale_goldscales_recolormask_dark.png"
+#coolness 4
+#end

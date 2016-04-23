@@ -1,0 +1,40 @@
+#new
+#name "water"
+#color 0 0 184
+#end
+
+#new
+#name "air"
+#color 145 215 215
+#end
+
+#new
+#name "earth"
+#color 136 72 0
+#end
+
+#new
+#name "fire"
+#color 248 124 0
+#end
+
+#new
+#name "astral"
+#color 224 236 240
+#end
+
+#new
+#name "blood"
+#color 112 0 0
+#end
+
+
+#new
+#name "nature"
+#color 0 104 0
+#end
+
+#new
+#name "death"
+#color 184 60 112
+#end

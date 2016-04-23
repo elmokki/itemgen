@@ -1,0 +1,17 @@
+#new
+#name "scalehauberk"
+#slot "armor"
+#type "armor"
+#type "scale"
+#type "hauberk"
+
+
+#load armor ./data/items/bodyarmor/scalearmor.txt
+
+
+#armor 12
+
+
+
+#effects effects
+#end

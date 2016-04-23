@@ -1,0 +1,20 @@
+#new
+#slot "1-h wpn"
+#name "1h sword"
+
+#type "sword"
+#type "weapon"
+#type "1h"
+
+#renderorder "grip blade"
+
+#load grip ./data/items/sword_1h/grip.txt
+#load blade ./data/items/sword_1h/blade.txt
+
+#weapon 6
+#weapon 8
+
+
+#effects weapon_effects
+#effects effects
+#end

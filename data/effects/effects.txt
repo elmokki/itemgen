@@ -1,0 +1,335 @@
+#new
+#name "strength"
+#level_cost 2 1
+#command "#str +5"
+#descr "%item% gives wielder superhuman strength"
+#element nature 1
+#element blood 1
+#element earth 1
+#tag strength
+#end
+
+
+#new
+#name "mr-5"
+#level_cost 4 1
+#command "#mr +5"
+#descr "%item% gives wielder magic resistance"
+#element astral 1
+#end
+
+#new
+#name "elements-5"
+#level_cost 4 2
+#command "#coldres +5"
+#command "#shockres +5"
+#command "#poisonres +5"
+#command "#fireres +5"
+#descr "%item% gives wielder resistance to all elemental magic"
+#tag elemental
+#end
+
+#new
+#name "fire_immunity"
+#level_cost 0 1
+#command "#fireres +15"
+#descr "%item% gives wielder strong resistance to fire"
+#tag protection
+#tag fire
+#element fire 4
+#element water 4
+#end
+
+#new
+#name "dousing"
+#command "#douse"
+#level_cost 4 2
+#descr "%item% guides its user to virgins used for blood sacrifices."
+#element blood 4
+#tag blood
+#tag dousing
+#end
+
+
+#new
+#name "cold_immunity"
+#level_cost 0 1
+#command "#coldres +15"
+#descr "%item% gives wielder strong resistance to cold"
+#tag protection
+#tag cold
+#element fire 4
+#element water 4
+#end
+
+#new
+#name "poison_immunity"
+#level_cost 0 1
+#command "#poisonres +15"
+#descr "%item% gives wielder strong resistance to poison"
+#tag protection
+#tag poison
+#element death 4
+#element nature 4
+#end
+
+#new
+#name "lightning_immunity"
+#level_cost 0 1
+#command "#poisonres +15"
+#descr "%item% gives wielder strong resistance to lightning"
+#tag protection
+#tag lightning
+#element air 4
+#element earth 4
+#end
+
+#new
+#name "quickness"
+#level_cost 6 2
+#command "#quickness"
+#descr "%item% gives wielder quickness"
+#tag quickness
+#element water 1
+#end
+
+#new
+#name "stoneskin"
+#level_cost 4 2
+#command "#stoneskin"
+#descr "%item% gives wielder stone skin"
+#tag invulnerability
+#tag stone
+#element earth 4
+#end
+
+#new
+#name "bers1"
+#level_cost 0 1
+#command "#bers"
+#command "#berserk +1"
+#descr "%item% makes the unit fearless and unable to control himself"
+#tag berserk
+#element nature 4
+#element blood 2
+#end
+
+#new
+#name "bers3"
+#level_cost 2 1
+#command "#bers"
+#command "#berserk +3"
+#descr "%item% makes the unit fearless and unable to control himself"
+#tag berserk
+#element nature 4
+#element blood 2
+#end
+
+
+#new
+#name "bers5"
+#level_cost 6 3
+#command "#bers"
+#command "#berserk +5"
+#descr "%item% makes the unit fearless and unable to control himself"
+#tag berserk
+#element nature 4
+#element blood 2
+#end
+
+
+
+#new
+#name "extralife"
+#level_cost 6 4
+#command "#extralife"
+#descr "%item% gives its wearer a second life"
+#tag life
+#tag miracle
+#element death 1
+#element nature 1
+#end
+
+#new
+#type "summon"
+#name "frogs"
+#level_cost 4 1
+#descr "%item% attracts frogs"
+#element nature 6
+#element water 4
+#command "#summon2 2222"
+#command "#batstartsum1d6 2222"
+#tag frog
+#tag summon
+#end
+
+
+
+#new
+#type "summon"
+#name "bugs"
+#level_cost 4 1
+#descr "%item% attracts dung beetles"
+#element nature 6
+#element death 6
+#command "#summon2 2218"
+#command "#batstartsum1d6 2218"
+#tag bug
+#end
+
+
+#new
+#type "summon"
+#name "imps"
+#level_cost 6 4
+#descr "%item% attracts imps"
+#tag demon
+#tag imp
+#element blood 10
+#command "#summon1 303"
+#end
+
+#new
+#type "summon"
+#name "longdeads few"
+#level_cost 4 1
+#descr "Wearer of %item% is protected by a few longdead soldiers"
+#tag skeleton
+#tag reanimation
+#element death 10
+#command "#batstartsum2d6 192"
+#end
+
+#new
+#type "summon"
+#name "longdeads many"
+#level_cost 6 4
+#descr "Wearer of %item% is protected by a small army of longdead soldiers"
+#tag skeleton
+#tag reanimation
+#element death 10
+#command "#batstartsum5d6 192"
+#end
+
+#new
+#name "invuln-20"
+#level_cost 6 6
+#descr "Wearer of %item% is invulnerable"
+#tag invulnerability
+#command "#invulnerable +20"
+#element earth 5
+#element death 3
+#end
+
+
+#new
+#name "reinvig-3"
+#type "reinvig"
+#level_cost 2 2
+#descr "Wearer of %item% is reinvigorated"
+#command "#reinvigoration +3"
+#tag reinvigoration
+#end
+
+#new
+#name "reinvig-5"
+#type "reinvig"
+#level_cost 4 2
+#descr "Wearer of %item% is strongly reinvigorated"
+#command "#reinvigoration +5"
+#tag reinvigoration
+#end
+
+#new
+#name "reinvig-8"
+#type "reinvig"
+#level_cost 8 4
+#descr "Wearer of %item% is reinvigorated at an extreme rate"
+#nameadjective "Reinvigorating"
+#command "#reinvigoration +8"
+#tag reinvigoration
+#end
+
+#new
+#name "hpoverflow"
+#power 6
+#level_cost 4 2
+#descr "%item% increases its wielder's life force and allows it to grow to unnatural proportions"
+#namenoun "Life"
+#command "#hpoverflow"
+#command "#hp +8"
+#tag life
+#end
+
+#new
+#name "ethereal"
+#level_cost 4 2
+#descr "%item% makes its bearer ethereal"
+#command "#ethereal"
+#element astral 8
+#tag ethereal
+#end
+
+#new
+#name "fear1"
+#type "fear"
+#level_cost 2 2
+#descr "%item% makes its bearer cause fear"
+#tag fear
+#command "#fear +1"
+#element death 4
+#element blood 2
+#end
+
+
+#new
+#name "fear2"
+#type "fear"
+#level_cost 4 2
+#descr "%item% makes its bearer cause fear"
+#tag fear
+#command "#fear +2"
+#element death 8
+#element blood 4
+#end
+
+#new
+#name "awe1"
+#type "awe"
+#level_cost 4 2
+#descr "%item% makes its bearer extremely beautiful, causing enemies to hesitate when striking its bearer"
+#tag awe
+#command "#awe +1"
+#element death -8
+#element blood -8
+#end
+
+
+
+#new
+#name "pen+2"
+#command "#pen +2"
+#level_cost 4 2
+#descr "%item% greatly increases its user's ability of bypassing enemy magic resistance"
+#element astral 4
+#tag penetration
+#end
+
+#new
+#name "pen+4"
+#command "#pen +4"
+#descr "%item% greatly increases its user's ability of bypassing enemy magic resistance"
+#element astral 6
+#tag penetration
+#level_cost 8 4
+#end
+
+#new
+#name "slave"
+#command "#communionslave"
+#descr "%item% enslaves it's carrier to be a slave in magical communions."
+#level_cost 4 2
+#element astral 4
+#element blood 4
+#tag communionslave
+#end

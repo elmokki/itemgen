@@ -1,0 +1,40 @@
+#new
+#name "defaulttext"
+#sprite "./graphics/misc/stone/defaulttext.png"
+#coolness 8
+#end
+
+#new
+#name "recolorable defaulttext"
+#sprite "./graphics/misc/stone/defaulttext_recolorable.png"
+#recolormask self
+#coolness 8
+#end
+
+#new
+#name "divided text"
+#sprite "./graphics/misc/stone/dividedtext.png"
+#coolness 8
+#end
+
+#new
+#name "recolorable divided text"
+#sprite "./graphics/misc/stone/dividedtext_recolorable.png"
+#recolormask self
+#coolness 8
+#end
+
+
+#new
+#name "circle"
+#sprite "./graphics/misc/stone/circle.png"
+#coolness 8
+#end
+
+#new
+#name "recolorable circle"
+#sprite "./graphics/misc/stone/circle_recolorable.png"
+#recolormask self
+#coolness 8
+#end
+

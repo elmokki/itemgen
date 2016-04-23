@@ -1,0 +1,5 @@
+#new
+#name "eye"
+#sprite "./graphics/misc/eye/eye.png"
+#recolormask self
+#end

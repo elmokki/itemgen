@@ -1,0 +1,31 @@
+#new
+#name "ring with gem"
+#slot "misc"
+#type "ring"
+#renderorder "ring bauble"
+
+#load ring ./data/items/ring/ring.txt
+#load bauble ./data/items/ring/bauble.txt
+
+#basechance 0.5
+#chanceinc level 6 *2
+
+#effects effects
+#end
+
+
+
+#new
+
+#name "plain ring"
+#slot "misc"
+#type "ring"
+#renderorder "ring bauble"
+
+#load ring ./data/items/ring/ring_basic.txt
+
+#basechance 0.5
+#chanceinc level below 6 *2
+
+#effects effects
+#end

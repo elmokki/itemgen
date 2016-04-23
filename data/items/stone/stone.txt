@@ -1,0 +1,12 @@
+#new
+#name "stone"
+#sprite "./graphics/misc/stone/blankstone.png"
+#coolness 8
+#end
+
+#new
+#name "light stone"
+#sprite "./graphics/misc/stone/blankstone_light.png"
+#coolness 8
+#end
+

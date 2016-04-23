@@ -1,0 +1,52 @@
+#new
+#name "1h grip 1 iron"
+#sprite "./graphics/weapon/sword_1h/sword_1h_ironpommel.png"
+#end
+
+#new
+#name "1h grip 1 gold"
+#sprite "./graphics/weapon/sword_1h/sword_1h_goldpommel.png"
+#coolness 2
+#end
+
+#new
+#name "1h grip 1 recolorable"
+#sprite "./graphics/weapon/sword_1h/sword_1h_goldpommel.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_recolor_pommel.png"
+#coolness 4
+#end
+
+#new
+#name "1h grip 2 recolorable"
+#sprite "./graphics/weapon/sword_1h/sword_1h_alternate.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_alternate_recolor_pommel.png"
+#coolness 4
+#end
+
+
+#new
+#name "1h grip 2"
+#sprite "./graphics/weapon/sword_1h/sword_1h_alternate.png"
+#coolness 2
+#end
+
+
+#new
+#name "1h grip 3"
+#sprite "./graphics/weapon/sword_1h/sword_1h_alternate2.png"
+#coolness 4
+#end
+
+#new
+#name "1h grip 3 recolorable"
+#sprite "./graphics/weapon/sword_1h/sword_1h_alternate2.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_alternate2_recolormask.png"
+#coolness 4
+#end
+
+#new
+#name "1h grip 4"
+#sprite "./graphics/weapon/sword_1h/sword_1h_alternate3.png"
+#recolormask "./graphics/weapon/sword_1h/sword_1h_alternate3_recolormask.png"
+#coolness 4
+#end

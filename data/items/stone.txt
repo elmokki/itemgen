@@ -1,0 +1,18 @@
+#new
+#name "stone"
+#slot "misc"
+#type "stone"
+#renderorder "stone text"
+
+#basechance 0.05
+#chanceinc level 6 0.15
+#chanceinc level 8 *5
+
+
+#load stone ./data/items/stone/stone.txt
+#load text ./data/items/stone/text.txt
+
+
+#effects effects
+#end
+

@@ -1,0 +1,221 @@
+
+-- This one has a very low basechance that is always positive, thus being a failsafe
+#new
+#basechance 0.0001
+#name "object"
+#end
+
+-- Stone (as in portal stone style)
+
+
+#new
+#basechance 0
+#name "rock"
+#chanceinc type stone 5
+#end
+
+
+#new
+#basechance 0
+#name "stone"
+#chanceinc type stone 1
+#end
+
+
+#new
+#basechance 0
+#name "slab"
+#chanceinc type stone 1
+#end
+
+
+
+-- Eye specific ones
+
+#new
+#basechance 0
+#name "eye"
+#chanceinc type eye 10
+#end
+
+#new
+#basechance 0
+#name "vision"
+#chanceinc type eye 1
+#chanceinc level 4 *4
+#chanceinc level 6 *10
+#chanceinc level 8 *5
+#end
+
+#new
+#basechance 0
+#name "watcher"
+#chanceinc type eye 1
+#chanceinc level 6 *10
+#chanceinc level 8 *5
+#end
+
+#new
+#basechance 0
+#name "gaze"
+#chanceinc type eye 1
+#chanceinc level 4 *4
+#chanceinc level 6 *10
+#chanceinc level 8 *5
+#end
+
+#new
+#basechance 0
+#name "sight"
+#chanceinc type eye 1
+#chanceinc level 4 *4
+#chanceinc level 6 *10
+#chanceinc level 8 *5
+#end
+
+
+-- 1h swords
+
+#new
+#basechance 0
+#name "brand"
+#chanceinc type sword 10
+#end
+
+#new
+#basechance 0
+#name "blade"
+#chanceinc type sword 10
+#end
+
+#new
+#basechance 0
+#name "sword"
+#chanceinc type sword 20
+#end
+
+#new
+#basechance 0
+#name "arm"
+#chanceinc type sword 0.1
+#chanceinc level 8 *250
+#end
+
+-- Armor
+
+#new
+#basechance 0
+#name "armor"
+#chanceinc type armor 10
+#end
+
+#new
+#basechance 0
+#name "protector"
+#chanceinc type armor 10
+#end
+
+
+#new
+#basechance 0
+#name "hauberk"
+#chanceinc type hauberk 50
+#end
+
+#new
+#basechance 0
+#name "cuirass"
+#chanceinc type cuirass 50
+#end
+
+
+#new
+#basechance 0
+#name "mail"
+#chanceinc type armor 10
+#chanceinc type plate *0
+#chanceinc type leather *0
+#chanceinc type robe *0
+#chanceinc type cloth *0
+#end
+
+#new
+#basechance 0
+#name "scales"
+#chanceinc type scale 5
+#chanceinc level 8 *5
+#end
+
+-- Rings
+
+#new
+#basechance 0
+#name "ring"
+#chanceinc type ring 5
+#end
+
+
+#new
+#basechance 0
+#name "band"
+#chanceinc type ring 2
+#end
+
+
+#new
+#basechance 0
+#name "loop"
+#chanceinc type ring 0.5
+#end
+
+
+#new
+#basechance 0
+#name "jewel"
+#chanceinc type ring 0.5
+#end
+
+#new
+#basechance 0
+#name "gem"
+#chanceinc type ring 0.25
+#end
+
+
+
+
+
+
+-- Generic epic names
+
+#new
+#basechance 0
+#name "ember"
+#chanceinc magic fire 50
+#chanceinc level below 8 *0
+#end
+
+#new
+#basechance 0
+#name "thunder"
+#chanceinc magic air 5
+#chanceinc tag lightning 45
+#chanceinc level below 8 *0
+#end
+
+#new
+#basechance 0
+#name "strike"
+#chanceinc type weapon 50
+#chanceinc level below 8 *0
+#end
+
+
+#new
+#basechance 0
+#name "striker"
+#chanceinc type weapon 50
+#chanceinc level below 8 *0
+#end
+
+

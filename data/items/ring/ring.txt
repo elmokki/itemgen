@@ -1,0 +1,5 @@
+#new
+#name "ring 1"
+#sprite "./graphics/misc/ring/ring.png"
+#coolness 4
+#end

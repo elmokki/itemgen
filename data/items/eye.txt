@@ -1,0 +1,12 @@
+#new
+#name "eye (sparkly)"
+#slot "misc"
+#type "eye"
+
+#load eye ./data/items/eye/eye.txt
+
+#needs_effect_type eye
+#command "#reqeyes"
+
+#effects eye_effects
+#end

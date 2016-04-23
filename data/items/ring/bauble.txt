@@ -1,0 +1,13 @@
+#new
+#name "bauble1"
+#sprite "./graphics/misc/ring/bauble1.png"
+#recolormask "./graphics/misc/ring/bauble1_recolormask.png"
+#coolness 4
+#end
+
+#new
+#name "bauble2"
+#sprite "./graphics/misc/ring/bauble2.png"
+#recolormask self
+#coolness 4
+#end

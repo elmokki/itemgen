@@ -1,0 +1,17 @@
+#new
+#name "ring 2"
+#sprite "./graphics/misc/ring/recolorablering.png"
+#coolness 2
+#end
+
+#new
+#name "ring 2 recolorable"
+#sprite "./graphics/misc/ring/recolorablering.png"
+#recolormask self
+#coolness 2
+#end
+
+#new
+#name "ring 3"
+#sprite "./graphics/misc/ring/ring.png"
+#end
