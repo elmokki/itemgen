@@ -327,7 +327,7 @@
 #new
 #name "slave"
 #command "#communionslave"
-#descr "%item% enslaves it's carrier to be a slave in magical communions."
+#descr "%item% enslaves its carrier to be a slave in magical communions."
 #level_cost 4 2
 #element astral 4
 #element blood 4
