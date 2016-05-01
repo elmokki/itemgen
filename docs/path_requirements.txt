@@ -1,0 +1,10 @@
+Effect path requirement syntax is:
+
+#path_requirement <cost> <path1> [path2] [smin sminlevel] [smax smaxlevel]
+
+Cost is the total sum of levels required to craft the item (which also determines item cost).
+
+Path1 and path2 are magic paths. Path2 can be left empty. Order matters here - being a primary path is meaningful.
+You can also use none/any/elemental/sorcery instead of path names.
+
+smin/smax stand for secondary minimum and maximum levels, defaulting to 1 and 999 (assuming there is a secondary path)

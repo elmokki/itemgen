@@ -14,8 +14,8 @@ public class Generic {
 	
 	public static String integerToPath(int integer)
 	{
-		String[] paths = { "fire", "air", "water", "earth", "astral", "death", "nature", "blood", "holy" };
-		if(integer >= 0 && integer < 9)
+		String[] paths = { "fire", "air", "water", "earth", "astral", "death", "nature", "blood", "holy", "any", "elemental", "sorcery" };
+		if(integer >= 0 && integer < 12)
 			return paths[integer];	
 		else
 			return "NONE";
@@ -23,9 +23,9 @@ public class Generic {
 	
 	public static int PathToInteger(String path)
 	{
-		String[] paths = { "fire", "air", "water", "earth", "astral", "death", "nature", "blood", "holy" };
+		String[] paths = { "fire", "air", "water", "earth", "astral", "death", "nature", "blood", "holy", "any", "elemental", "sorcery" };
 		path = path.toLowerCase().trim();
-		for(int i = 0; i < 9; i++)
+		for(int i = 0; i < 12; i++)
 		{
 			if(paths[i].equals(path))
 			{
@@ -36,10 +36,28 @@ public class Generic {
 		return -1;	
 	}
 	
+	public static boolean matchingPaths(int orig, int target)
+	{
+		return  target == orig || (target == 11 && isSorcery(orig)) || (target == 10 && isElemental(orig)) || target == 9;
+	}
+	
+	public static boolean isElemental(int path)
+	{
+		if(path == 9 || path == 10 || (path > -1 && path < 4))
+			return true;
+		return false;
+	}
+	public static boolean isSorcery(int path)
+	{
+		if(path == 9 || path == 11 || (path > 3 && path < 8))
+			return true;
+		return false;
+	}
+	
 	public static String integerToShortPath(int integer)
 	{
 
-		String[] paths = { "F", "A", "W", "E", "S", "D", "N", "B", "H" };
+		String[] paths = { "F", "A", "W", "E", "S", "D", "N", "B", "H", "?", "?", "?" };
 		
 		if(integer >= 0 && integer < 9)
 			return paths[integer];	
