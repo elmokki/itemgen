@@ -15,7 +15,6 @@ public class Filter extends Entity {
 	public List<String> chanceincs = new ArrayList<String>();
 	public List<String> types = new ArrayList<String>();
 	public double level = 0;
-	public double cost = 0;
 	public Filter(ItemGen itemGen) {
 		super(itemGen);
 	}
@@ -45,18 +44,11 @@ public class Filter extends Entity {
 				args.remove(0);
 				this.chanceincs.add(Generic.listToString(args));
 			}
-			else if(args.get(0).equals("#power") || args.get(0).equals("#coolness"))
+			else if(args.get(0).equals("#power") || args.get(0).equals("#coolness") || args.get(0).equals("#level"))
 			{
-				if(this.level == 0)
-				{
-					this.level = Integer.parseInt(args.get(1));
-					this.cost = 1;
-				}
-			}
-			else if(args.get(0).equals("#level_cost"))
-			{
-				this.level = Double.parseDouble(args.get(1));
-				this.cost = Double.parseDouble(args.get(2));
+		
+				this.level = Integer.parseInt(args.get(1));
+				
 			}
 			else
 				super.handleOwnCommand(str);

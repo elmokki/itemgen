@@ -19,9 +19,10 @@
 #multitype
 #command "#prec +8"
 #command "#loseeye"
-#element air 2
-#element nature 1
-#level_cost 2 0.75
+#path_requirement 1 air
+#path_requirement 1 nature
+#path_requirement 1 air nature
+#level 2
 #tag precision
 #end
 
@@ -32,9 +33,9 @@
 #descr "%item% increases its user's ability of bypassing enemy magic resistance"
 #type "eye"
 #multitype
-#element astral 2
+#path_requirement 1.5 astral
 #tag penetration
-#level_cost 4 0.75
+#level 4
 #end
 
 
@@ -45,9 +46,9 @@
 #descr "%item% greatly increases its user's ability of bypassing enemy magic resistance"
 #type "eye"
 #multitype
-#element astral 8
+#path_requirement 3 astral
 #tag penetration
-#level_cost 8 5
+#level 8
 #end
 
 
@@ -55,11 +56,11 @@
 #name "dousing"
 #command "#douse"
 #command "#loseeye"
-#level_cost 4 2
+#level 4
 #descr "%item% lets it's user spot potential subjects of blood sacrifice from a crowd."
 #type "eye"
 #multitype
-#element blood 4
+#path_requirement 2 blood
 #tag blood
 #tag dousing
 #end
@@ -68,9 +69,11 @@
 #name "slave"
 #command "#communionslave"
 #command "#loseeye"
-#level_cost 4 1
+#level 4
 #descr "%item% enslaves it's carrier to be a slave in magical communions."
-#element astral 4
-#element blood 4
+#path_requirement 2 blood
+#path_requirement 2 astral
+#path_requirement 2 blood astral
+#path_requirement 2 astral blood
 #tag communionslave
 #end

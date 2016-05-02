@@ -65,7 +65,6 @@ public class ItemGenMod {
 				
 				int path = ig.getPath();
 				
-				System.out.println("Generating item with level " + level + " and path " + path);
 				Item item = null;
 				while(item == null)
 				{

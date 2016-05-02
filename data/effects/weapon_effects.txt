@@ -6,8 +6,18 @@
 #descr "%item% pierces any armor it hits."
 #itemcommand "#armorpiercing"
 #itemstats 5
-#level_cost 2 1
-#element earth 2
+#level 0
+#path_requirement 1 any
+#end
+
+#new
+#basechance 10
+#name "magic"
+#descr "%item% is magic."
+#itemcommand "#dt_magic"
+#itemstats 5
+#level 2
+#path_requirement 1 astral
 #end
 
 
@@ -17,8 +27,8 @@
 #descr "%item% raises anyone it kills to fight for its wielder."
 #itemcommand "#dt_raise"
 #itemstats 5
-#element death 8
-#level_cost 4 2
+#path_requirement 3 death
+#level 4
 #end
 
 #new
@@ -26,8 +36,8 @@
 #name "drainlife"
 #descr "%item% drains the life of those it hits."
 #itemcommand "#dt_weapondrain"
-#element death 4
-#level_cost 4 2
+#path_requirement 3 death
+#level 4
 #end
 
 
@@ -37,9 +47,9 @@
 #descr "%item% drips with poison."
 #itemcommand "#secondaryeffect 51"
 #itemstats 5
-#element death 2
-#element nature 4
-#level_cost 4 2
+#path_requirement 1 nature
+#path_requirement 1 death nature
+#level 4
 #end
 
 #new
@@ -49,8 +59,8 @@
 #descr "%item% smolders with fire."
 #itemcommand "#secondaryeffect 216"
 #itemstats 5
-#element fire 6
-#level_cost 2 2
+#path_requirement 0.5 fire
+#level 2
 #end
 
 #new
@@ -59,9 +69,8 @@
 #descr "%item% drips with acid."
 #itemcommand "#acid"
 #itemstats 5
-#element fire 8
-#element water 8
-#level_cost 4 2
+#path_requirement 1 fire water
+#level 2
 #end
 
 
@@ -72,9 +81,9 @@
 #descr "%item% blasts those it hits with fire."
 #itemcommand "#secondaryeffect 171"
 #itemstats 5
-#element fire 8
-#element earth 4
-#level_cost 4 3
+#path_requirement 2.75 fire earth
+#path_requirement 3 fire
+#level 4
 #end
 
 #new
@@ -84,7 +93,6 @@
 #descr "%item% blasts those it hits with cold."
 #itemcommand "#secondaryeffect 409"
 #itemstats 5
-#element water 8
-#element earth 4
-#level_cost 4 3
+#path_requirement 2 water
+#level 4
 #end

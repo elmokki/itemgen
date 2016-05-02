@@ -4,6 +4,7 @@ import itemgen.Item;
 import itemgen.entities.Effect;
 import itemgen.entities.Filter;
 import itemgen.entities.ItemTemplate;
+import itemgen.entities.PathRequirement;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -277,53 +278,94 @@ public class ChanceIncHandler {
 		return newlist;
 	}
 	
-	public <T extends Filter> List<T> getRangeOfCost(List<T> list, int min, int max)
-	{
-		List<T> newlist = new ArrayList<T>();
-		for(T t : list)
-			if(t.cost >= min && t.cost <= max)
-				newlist.add(t);
-		
-		return newlist;
-	}
+
 	
+	
+
 	/**
 	 * Returns effects with suitable paths for the item
 	 * @param list
 	 * @param item
 	 * @return
 	 */
-	public <T extends Effect> List<T> getPossibleAdditions(List<T> list, Item item)
+	public <T extends Effect> List<T> getPossibleAdditions(PathRequirement cpr, List<T> list, int path1, int path2, boolean needboth)
 	{
-		double[] magic = item.getMagic();
 		List<T> newlist = new ArrayList<T>();
 		
-
 
 		
 		for(T t : list)
 		{
-			boolean p1 = false;
-			boolean p2 = false;
-			boolean all_zero = true;
-			for(int i = 0; i < 8; i++)
-			{
-				if(i == item.p1 && t.magic[i] > 0)
-					p1 = true;
-				
-				if(i == item.p2 && t.magic[i] > 0)
-					p2 = true;
-				
-				if(t.magic[i] > 0)
-					all_zero = false;
-			}
-			
-			if(item.p2 < 0)
-				p2 = true;
-			
-			if(all_zero || (p1 && p2))
+			if(t.magic_requirements.size() == 0)
 				newlist.add(t);
+			else
+			{
+				for(PathRequirement pr : t.magic_requirements)
+				{
+					boolean p1 = false;
+					boolean p2 = false;
+					
+					// Single path requirements
+					if(pr.p2 == -1)
+					{
+						// Path 1 
+						// Either same as requirement, requirement is "any" or both sorcery/elemental
+						if(Generic.matchingPaths(path1, pr.p1))
+						{
+							newlist.add(t);
+							continue;
+						}
+						
+						
+						// Path 2
+						// More tricky!
+						if(Generic.matchingPaths(path2, pr.p1))
+						{
+							// Prevents getting secondary path stuff for first thing
+							if(cpr != null)
+							{
+								if(cpr.cost - cpr.smin > pr.cost + cpr.smin)
+								{
+									newlist.add(t);
+									continue;
+								}
+							}
+						}
+					}
+					
+					// Double path requirements
+					else if(path1 > -1 && path2 > -1)
+					{
+						
+						// Check primary path
+						if(Generic.matchingPaths(path1, pr.p1))
+						{
+
+							// Check secondary path
+							if(Generic.matchingPaths(path2, pr.p2))
+							{
+								newlist.add(t);
+								continue;
+							}
+
+						}
+					}
+					
+					
+					if(pr.p1 == path1 || pr.p1 == path2)
+						p1 = true;
+					if(pr.p2 == path2 || pr.p2 == path1)
+						p2 = true;
+					
+					if(p1 && (p2 || pr.p2 == -1 || !needboth))
+					{
+						newlist.add(t);
+						break;
+					}
+				}
+			}
 		}
+		
 		return newlist;
 	}
 	
@@ -380,49 +422,101 @@ public class ChanceIncHandler {
 				{	
 					
 					// Magic paths
-					if(args.get(0).equals("magic"))
+					if(args.get(0).equals("path1"))
 					{
-						double[] magic = item.getMagic();
-						
-						int highestpos = 0;
-						double highest = 0;
-						int sechighestpos = 0;
-						double sechighest = 0;
-						for(int i = 0; i < 8; i++)
-							if(magic[i] > highest)
-							{
-								highestpos = i;
-								highest = magic[i];
-							}
-							else if(magic[i] > sechighest)
-							{
-								sechighestpos = i;
-								sechighest = magic[i];
-							}
-						
-						
-					
-						if(highest > 0)
+						boolean reverse = false;
+						if(args.get(1).equals("not"))
 						{
-							double prec = (double)sechighest / (double)highest;
-							if(highest > 0 && Generic.PathToInteger(args.get(1)) == highestpos || (Generic.PathToInteger(args.get(1)) == sechighestpos && prec > 0.75))
-							{
-								filters.put(f, applyModifier(f.basechance, args.get(args.size() - 1)));
-							}
+							args.remove(1);
+							reverse = true;
 						}
 						
+						boolean fine = false;
+						if(Generic.PathToInteger(args.get(1)) == item.p1);
+						{
+							if(Double.parseDouble(args.get(args.size() - 2)) >= item.lv1)
+								fine = true;
+							else
+								fine = true;
+					
+						}
+						
+						if(fine != reverse)
+						{
+							filters.put(f, applyModifier(f.basechance, args.get(args.size() - 1)));
+
+						}
+	
+					}
+					else if(args.get(0).equals("path2"))
+					{
+						boolean reverse = false;
+						if(args.get(1).equals("not"))
+						{
+							reverse = true;
+							args.remove(1);
+						}
+						
+						boolean fine = false;
+						if(Generic.PathToInteger(args.get(1)) == item.p2);
+						{
+							if(Double.parseDouble(args.get(args.size() - 2)) >= item.lv2)
+								fine = true;
+							else
+								fine = true;
+					
+						}
+						
+						if(fine != reverse)
+						{
+							filters.put(f, applyModifier(f.basechance, args.get(args.size() - 1)));
+
+						}
+	
+					}
+					else if(args.get(0).equals("paths"))
+					{
+						boolean reverse = false;
+						if(args.get(1).equals("not"))
+						{
+							reverse = true;
+							args.remove(1);
+						}
+						boolean fine = false;
+						if(Generic.matchingPaths(item.p1, Generic.PathToInteger(args.get(1))));
+						{
+							if(Generic.matchingPaths(item.p2, Generic.PathToInteger(args.get(2))));
+								fine = true;
+					
+					
+						}
+						
+						if(fine != reverse)
+						{
+							filters.put(f, applyModifier(f.basechance, args.get(args.size() - 1)));
+
+						}
 	
 					}
 					else if(args.get(0).equals("tag"))
 					{
+						boolean reverse = false;
+						if(args.get(1).equals("not"))
+						{
+							reverse = true;
+							args.remove(1);
+						}
+						
 						boolean ok = false;
 						for(Effect e : item.appliedFilters)
 						{
 							if(e.tags.contains(args.get(1)))
 								ok = true;
 						}
-		
-						if(ok)
+						if(item.template.tags.contains(args.get(1)))
+							ok = true;
+						
+						if(ok != reverse)
 						{
 							filters.put(f, applyModifier(f.basechance, args.get(args.size() - 1)));
 						}
@@ -449,6 +543,18 @@ public class ChanceIncHandler {
 
 		
 						if(item.template.types.contains(args.get(1)))
+						{
+	
+							filters.put(f, applyModifier(f.basechance, args.get(args.size() - 1)));
+						}
+						
+	
+					}
+					else if(args.get(0).equals("slot"))
+					{
+
+		
+						if(item.template.slot.equals(args.get(1)))
 						{
 	
 							filters.put(f, applyModifier(f.basechance, args.get(args.size() - 1)));

@@ -3,6 +3,7 @@ package itemgen;
 import itemgen.entities.Effect;
 import itemgen.entities.ItemTemplate;
 import itemgen.entities.Part;
+import itemgen.entities.PathRequirement;
 import itemgen.misc.Command;
 import itemgen.naming.Name;
 
@@ -41,6 +42,7 @@ public class Item {
 	public int lv1 = 0;
 	public int p2 = -1;
 	public int lv2 = 0;
+	public PathRequirement pr = null;
 	public Name name = new Name();
 	public int type = 1;
 	public String descr = "";
@@ -161,17 +163,7 @@ public class Item {
 	}
 	
 	
-	public double[] getMagic()
-	{
-		double[] magic = baseMagic;
-		for(Effect e : appliedFilters)
-		{
-			for(int i = 0; i < 8; i++)
-				magic[i] += e.magic[i];
-		}
-		
-		return magic;
-	}
+
 	
 	
 	public void addEffect(Effect f)

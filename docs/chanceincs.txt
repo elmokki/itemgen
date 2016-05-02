@@ -1,0 +1,22 @@
+#chanceinc path1 [not] <path> [level] <modifier>
+Checks whether primary path of item is/isn't path. Level is optional and if added checks whether item level is equal or higher.
+Not-switch reverses the check (path isn't primary or is below). Level checks are only relevant after item has been made, ie for naming.
+
+#chanceinc path2 [not] <path> [level] <modifier>
+Checks whether secondary path of item is/isn't path. Level is optional and if added checks whether item level is equal or higher.
+Not-switch reverses the check (path isn't primary or is below). Level checks are only relevant after item has been made, ie for naming.
+
+#chanceinc paths [not] <path1> <path2> <modifier>
+Checks whether item paths are the two given paths. In addition to normal paths none/any/elemental/sorcery are usable.
+
+#chanceinc tag [not] <tag> <modifier>
+Checks whether item effects or item template has given tag.
+
+#chanceinc level [below] <level> <modifier>
+Checks whether item level is above or at (or below) given level
+
+#chanceinc type <type> <modifier>
+Checks whether item template is of <type> #type.
+
+#chanceinc slot <type> <modifier>
+Checks whether item is of slot <slot>.

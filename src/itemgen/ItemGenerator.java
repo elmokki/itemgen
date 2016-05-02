@@ -11,6 +11,7 @@ import itemgen.entities.Effect;
 import itemgen.entities.Entity;
 import itemgen.entities.ItemTemplate;
 import itemgen.entities.Part;
+import itemgen.entities.PathRequirement;
 import itemgen.misc.ChanceIncHandler;
 
 public class ItemGenerator {
@@ -101,6 +102,137 @@ public class ItemGenerator {
 	}
 	
 	
+	private void handleItems(Item item)
+	{
+		ItemTemplate t = item.template;
+		
+		// If the item needs ingame armor and/or weapon, add them
+		// TODO: Weighing?
+		if(t.armor.size() > 0)
+		{
+			item.armor = CustomItem.fromDB(t.armor.get(r.nextInt(t.armor.size())), true, igm.itemGen);
+			item.armor.id = igm.itemGen.idHandler.nextArmorId();
+		}
+		if(t.weapons.size() > 0)
+		{
+			item.weapon = CustomItem.fromDB(t.weapons.get(r.nextInt(t.weapons.size())), false, igm.itemGen);
+			item.weapon.id = igm.itemGen.idHandler.nextWeaponId();
+			
+			
+		}
+	}
+	
+	private Effect getEffect(List<Effect> effects, PathRequirement pr, Item item, int min, int max)
+	{
+		List<Effect> tefs = chandler.getPossibleAdditions(pr, effects, item.p1, item.p2, true);
+		tefs = chandler.getRangeOfLevel(tefs, min, max);
+		
+		Effect eff = Effect.getRandom(r, chandler.handleCoolness(chandler.handleChanceIncs(tefs, item, magicitems), item));
+		return eff;
+	}
+	
+	private PathRequirement getPathRequirement(Effect eff, Item i)
+	{
+		List<PathRequirement> suitable = new ArrayList<PathRequirement>();
+		for(PathRequirement pr : eff.magic_requirements)
+		{
+			boolean ok = true;
+			
+			
+			if(pr.p1 > -1)
+			{
+				if(!Generic.matchingPaths(i.p1, pr.p1) && (i.appliedFilters.size() == 0 || pr.p2 > -1 || !Generic.matchingPaths(i.p2, pr.p1)))
+					ok = false;
+			}
+			
+			if(pr.p2 > -1)
+			{
+				if(!Generic.matchingPaths(i.p2, pr.p2))
+					ok = false;
+			}
+			
+			if(ok)
+				suitable.add(pr);
+		}
+		
+		
+		if(suitable.size() > 1)
+			return suitable.get(r.nextInt(suitable.size() - 1));
+		else if(suitable.size() == 1)
+			return suitable.get(0);
+		else
+		{
+			return new PathRequirement(0, i.p1, -1, 0, 999, true);
+		}
+	}
+	
+	private PathRequirement combineRequirements(int level1, int level2, PathRequirement pr1, PathRequirement pr2)
+	{
+		
+		if(pr2.p1 > 8 && Generic.matchingPaths(pr1.p1, pr2.p1))
+			pr2.p1 = pr1.p1;
+		if(pr2.p2 > 8 && Generic.matchingPaths(pr1.p2, pr2.p2))
+			pr2.p2 = pr1.p1;
+		
+		int smin = pr1.smin;
+		int smax = pr1.smax;
+		int p1 = pr1.p1;
+		int p2 = pr1.p2;
+		
+		
+		double multi = 1 - (1 - (double)level2/(double)level1) / 2;
+		double cost = 0;
+		
+		if(pr1.cost >= pr2.cost*multi)
+		{
+			cost = pr1.cost + 0.5*multi*pr2.cost;
+		}
+		else
+		{
+			cost = multi*pr2.cost + 0.5*pr1.cost;
+		}
+		
+		if(pr1.p2 == -1)
+		{
+			p2 = pr2.p1;
+		}
+		
+		
+		PathRequirement pr_result = new PathRequirement(cost, p1, p2, smin, smax, true);
+			
+		return pr_result;
+	}
+	
+	private void priceItem(Item i)
+	{
+		
+		double cost = Math.round(i.pr.cost);
+		int smin = i.pr.smin;
+		int smax = i.pr.smax;
+		
+		if(i.p2 > -1 && i.pr.p2 > -1)
+			smin = Math.max(1, smin);
+		else
+			smax = 0;
+		
+		
+		int primcost = (int)Math.ceil((cost - smin) * (0.5 + (r.nextDouble() * 0.5))); 
+		primcost = Math.max(1, primcost);
+		
+		int seccost = (int)Math.floor(cost - primcost);
+		
+		seccost = Math.min(seccost, smax);
+		primcost = (int)(Math.ceil(cost) - seccost);
+		
+		i.lv1 = primcost;
+		i.lv2 = seccost;
+		
+		if(i.lv2 == 0)
+			i.p2 = -1;
+		
+	}
+	
+	
 	public Item generateItem(int level, int path)
 	{
 
@@ -138,79 +270,117 @@ public class ItemGenerator {
 		// Entirely random color for now
 		item.color = Drawing.getColor(r);
 		
+		// First path
 		item.p1 = path;
 		
+		// Secondary path
+		if(r.nextDouble() < 10.15)
+		{
+			while(item.p2 == -1 || item.p2 == item.p1)
+			{
+				item.p2 = getPath();
+			}
+		}
+
 
 		
 		// If the item needs ingame armor and/or weapon, add them
-		// TODO: Weighing?
-		if(t.armor.size() > 0)
-		{
-			item.armor = CustomItem.fromDB(t.armor.get(r.nextInt(t.armor.size())), true, igm.itemGen);
-			item.armor.id = igm.itemGen.idHandler.nextArmorId();
-		}
-		if(t.weapons.size() > 0)
-		{
-			item.weapon = CustomItem.fromDB(t.weapons.get(r.nextInt(t.weapons.size())), false, igm.itemGen);
-			item.weapon.id = igm.itemGen.idHandler.nextWeaponId();
-		}
+		handleItems(item);
 		
 		// Magic effects
-		
 
-			List<Effect> tefs = chandler.getPossibleAdditions(effects, item);
-			tefs = chandler.getRangeOfLevel(tefs, level - 2, level + 2);
-			Effect eff = Effect.getRandom(r, chandler.handleCoolness(chandler.handleChanceIncs(tefs, item, magicitems), item));
+			Effect eff = getEffect(effects, null, item, level - 2, level + 2);
+			
+			
 			if(eff != null)
 			{
 				item.addEffect(eff);
 				effects.remove(eff);
 
-				double pathlevel = eff.cost;
+				item.pr = getPathRequirement(eff, item).getCopy();
+				if(item.pr.p1 > 8)
+					item.pr.p1 = item.lv1;
+				if(item.pr.p2 > 8)
+					item.pr.p2 = item.lv2;
+				
+									
+				
 				double levelleft = level;
+				levelleft -= eff.level;
 				
-				levelleft-= eff.level;
+				boolean fine = true;	
 				
-				boolean fine = true;		
 				// If the effect was a low level one, try reducing cost
 				if(levelleft >= 2)
 				{
-					if(pathlevel >= 3 && r.nextDouble() > 0.25)
+					if(item.pr.cost >= (levelleft / 2) + 1 && (r.nextDouble() < 0.66 || item.pr.cost > level))
 					{
-						pathlevel -= levelleft;
+						item.pr.cost -= levelleft / 2;
 						fine = true;
 					}
-					else
+					else // If we won't reduce cost, we'll give an another effect
 						fine = false;
 				}
-				// If the effect was a high level one
+				
+				// If the effect was a high level one, increase cost
 				if(levelleft <= -1)
 				{
-					pathlevel += -levelleft;
+					item.pr.cost -= levelleft / 2;
 					fine = true;
 				}
 				
-					
+	
+				if(item.pr.cost <= level - 2 && r.nextDouble() > 0.66)
+					fine = false;
+				
+				//// Give an another effect	
+				
+
 				if(!fine)
 				{
-					tefs = chandler.getPossibleAdditions(effects, item);
-					tefs = chandler.getRangeOfLevel(tefs, level - 2, level - 2);
-					eff = Effect.getRandom(r, chandler.handleCoolness(chandler.handleChanceIncs(tefs, item, magicitems), item));
 					
+					eff = getEffect(effects, item.pr, item, level - 2, level - 2);
+				
+					// failsafe
+					if(eff == null && item.p2 == -1)
+					{
+				
+						while(item.p2 == -1 || item.p2 == item.p1)
+						{
+							item.p2 = getPath();
+						}
+						eff = getEffect(effects, item.pr, item, level - 2, level - 2);
+
+					}
+					
+					// failsafe 2
+					if(eff == null)
+						eff = getEffect(effects, item.pr, item, level - 6, level - 2);
+
+
 					if(eff != null)
 					{
-						pathlevel += eff.cost;
 						item.addEffect(eff);
 						effects.remove(eff);
+						item.pr = this.combineRequirements(level, (int) eff.level, item.pr, getPathRequirement(eff, item).getCopy());
+
 					}
+					
 				}
 				
-				item.lv1 = (int) Math.max(1, Math.round(pathlevel));
-				item.level = level;
-				System.out.println("-> " + item.p1 + ": " + item.lv1 + " - " + item.level + " / " + item.appliedFilters);
+				
+				this.priceItem(item);
+				
+			
 			}
 			else
 			{
+				// If this happens, no effect could be found for given slot-level combination. 
+				// This is bad, but to be expected if the amount of content is low.
+				//
+				// It could also even be desireable at some point if, for example, we wanted
+				// to avoid too many too similar items.
+				
 				return null;
 			}
 		
