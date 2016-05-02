@@ -361,7 +361,7 @@
 #new
 #name "slave"
 #command "#communionslave"
-#descr "%item% enslaves it's carrier to be a slave in magical communions."
+#descr "%item% enslaves its carrier to be a slave in magical communions."
 #path_requirement 3 astral
 #path_requirement 3 blood
 #tag communionslave
