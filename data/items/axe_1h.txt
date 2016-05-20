@@ -1,0 +1,21 @@
+#new
+#slot "1-h wpn"
+#name "1h axe"
+
+#type "axe"
+#type "weapon"
+#type "1h"
+
+#renderorder "haft grip blade"
+
+#load grip ./data/items/axe_1h/grip.txt
+#load haft ./data/items/axe_1h/haft.txt
+#load blade ./data/items/axe_1h/blade.txt
+
+#weapon 253
+#weapon 17
+
+
+#effects weapon_effects
+#effects effects
+#end
